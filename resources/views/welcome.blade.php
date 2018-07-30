@@ -98,23 +98,46 @@
 
     <div class="intro-content">
       <h2>Making <span>your ideas</span><br>happen!</h2>
-      <div>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="#portfolio" class="btn-projects scrollto">Our Projects</a>
-      </div>
+
     </div>
 
-    <div id="intro-carousel" class="owl-carousel" >
-      <div class="item" style="background-image: url('homepage/img/intro-carousel/1.jpg');"></div>
-      <div class="item" style="background-image: url('homepage/img/intro-carousel/2.jpg');"></div>
-      <div class="item" style="background-image: url('homepage/img/intro-carousel/3.jpg');"></div>
-      <div class="item" style="background-image: url('homepage/img/intro-carousel/4.jpg');"></div>
-      <div class="item" style="background-image: url('homepage/img/intro-carousel/5.jpg');"></div>
-    </div>
+    
+
+   
+     <div class="container search-form">
+        <form action="">
+          <div class="form-row">
+            <input type="radio" name="type" value="from airport">From airport
+            <input type="radio" name="type" value="to airport">To airport
+            <input type="radio" name="type" value="city-to-city">City-to-city
+          </div>
+             <div class="form-row">
+              <div class="form-group col-md-12">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+             
+            </div>
+           <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+            </div>
+          <button class="btn-get-started btn-search">SEARCH</button>  
+        </form>
+      </div>
 
   </section><!-- #intro -->
 
+
+
   <main id="main">
+
 
     <!--==========================
       About Section
@@ -533,6 +556,7 @@
         <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
+
           <form action="" method="post" role="form" class="contactForm">
             <div class="form-row">
               <div class="form-group col-md-6">

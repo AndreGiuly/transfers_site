@@ -5,3 +5,13 @@ span.error-msg {
 .sidebar {
 	overflow-y: visible;
 }
+
+.container.search-form {
+	background: #4ee7b0;
+    top: 75%;
+    position: absolute;
+    padding: 20px;
+    margin: 0 auto;
+    left: 20%;
+
+}
