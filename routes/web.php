@@ -13,7 +13,7 @@
 
 Route::get('/', 'FrontOfficeController@index');
 
-Route::post('departure','SimulationController@step1');
+Route::post('transfer/booking','SimulationController@saveStep');
 
 
 // Authenticated routes:

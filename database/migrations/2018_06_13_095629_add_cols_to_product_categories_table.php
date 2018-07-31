@@ -15,7 +15,7 @@ class AddColsToProductCategoriesTable extends Migration
     {
         Schema::table('product_categories', function (Blueprint $table) {
             //
-            $table->string('name');
+           
             $table->integer('active')->unsigned()->default(1);
         });
     }

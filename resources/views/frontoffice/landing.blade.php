@@ -37,7 +37,7 @@ session_start();
 
    
      <div class="container search-form">
-        <form action="departure" method="POST">
+        <form action="transfer/booking" method="POST">
          {{ csrf_field() }}
           
           <div class="form-row">
@@ -74,8 +74,12 @@ session_start();
                   </optgroup>
 
                 </select>
+
+                <input type="hidden" id="origin" name="origin" required>
+
  
               </div>
+                <p class="text text-danger">Please specify where you will arriving at</p>
 
 
             </div>
@@ -90,10 +94,9 @@ session_start();
               </div>
               
               <div class="floatlabel">
-                <label class="label" for="destination">Where you want to go?</label>
-                <input type="text" name="destination" id="destination" class="form-control" aria-label="Where you want to go?" aria-describedby="basic-addon2" />
-                
+                <input type="text" name="destination" id="to_place" class="form-control" aria-label="Where you want to go?" aria-describedby="basic-addon2" placeholder="Where you want to go?" />
               </div>
+                <p class="text text-danger">Please specify where you want to go.</p>
 
             </div>
           </div> 
@@ -103,12 +106,14 @@ session_start();
             <div class="form-group col-md-6 floatlabel">
               <label class="label" for="flight_date_arrive">When does your flight arrive?</label>
               <input type="text" name="flight_date_arrive" id="flight_date_arrive" class="form-control" />
+              
             </div>
 
             <div class="form-group col-md-6 floatlabel">
               <label class="label" for="flight_time_arrive">What time does your flight arrive?</label>
               <input type="text" name="flight_time_arrive" id="flight_time_arrive" class="form-control" />
             </div>
+            <p class="text text-danger">Please specify a date of your flight arrival.</p>
           </div>
           <div class="form-row">  
 
@@ -612,19 +617,35 @@ session_start();
     }
   });
 
-$('.search-form .owl-carousel').owlCarousel({
-  nav: false,
-  items: 1,
-  dotsData: true,
-  dots: true
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var directionsService = new google.maps.DirectionsService();
+
+    var map;
+
+    var placeId;
+    
+/*
+    var mapOptions = {
+      zoom : 10,
+      preserveViewport: true
+    }
+
+    map = new google.maps.Map(document.getElementById('map'),mapOptions);
+    directionsDisplay.setMap(map);
+*/
+
+
+google.maps.event.addDomListener(window,'load',function(){
+
+      var options = {
+        componentRestrictions: {country: "pt"}
+      };
+
+      //var from_places = new google.maps.places.Autocomplete(document.getElementById('depart'),options);
+      var to_places = new google.maps.places.Autocomplete(document.getElementById('to_place'),options);
 });
 
 
-
-$( '.owl-dot' ).on( 'click', function() {
-  owl.trigger('.owl-carousel', [$(this).index(), 300]);
-  $( '.owl-dot' ).removeClass( 'active' );
-  $(this).addClass( 'active' );
-})</script>
+    </script>
 @endsection
 
