@@ -6,6 +6,10 @@
     background: lightblue;
     position: absolute;
   }
+
+  .select2 .select2-container .select2-container--default {
+    width: 100%;
+  }
 </style>
 @endsection;
 

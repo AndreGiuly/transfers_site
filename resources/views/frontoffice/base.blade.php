@@ -94,6 +94,18 @@
 .select2-selection--single {
   height: 38px !important;
 }
+
+
+@media (max-width: 768px) {
+  .search-form {
+    width: 90%;
+    left: 5%;
+  }
+
+  .floatlabel {
+    max-width: 90%;
+  }
+}
   </style>
 
   @yield('style')
