@@ -532,7 +532,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* About Section
 --------------------------------*/
 #about {
-  padding: 185px 0 30px 0;
+  padding: 330px 0 30px 0;
 }
 
 #about .about-img {
@@ -1083,7 +1083,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 .search-form {
   background: #50d8af;
-    top: 75%;
+    top: 70%;
     position: absolute;
     padding: 20px;
     margin: 0 auto;
@@ -1091,20 +1091,30 @@ body.mobile-nav-active #mobile-nav-toggle {
     z-index: 11;
     width: 50%;
     box-sizing: border-box;
+    border-radius: 5px;
 
 }
 
+
+.input-group input {
+  border: 0 5px 5px 0;
+
+}
 .btn-search {
   font-family: "Raleway", sans-serif;
     font-size: 15px;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     display: inline-block;
     padding: 10px 32px;
     border-radius: 2px;
     transition: 0.5s;
-    margin: 10px auto;
+    margin: 0 auto;
     color: #fff;
     display: block;
 
+}
+
+.form-control {
+  border-radius: 0px;
 }

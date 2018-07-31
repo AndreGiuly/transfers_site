@@ -13,6 +13,8 @@
 
 Route::get('/', 'FrontOfficeController@index');
 
+Route::post('departure','SimulationController@step1');
+
 
 // Authenticated routes:
 Auth::routes();

@@ -1,8 +1,23 @@
 @extends('frontoffice.base')
+
+@section('style')
+<style>
+  .owl-carousel {
+    background: lightblue;
+    position: absolute;
+  }
+</style>
+@endsection;
+
 @section('title')
-Categorias
+Homepage
 @endsection
 @section('content')
+
+@php
+session_start();
+
+@endphp
 
   <!--==========================
     Intro Section
@@ -10,7 +25,7 @@ Categorias
   <section id="intro">
 
     <div class="intro-content">
-      <h2>Making <span>your ideas</span><br>happen!</h2>
+      <h2>Say Hi to the <span>best transfers</span><br>in Portugal!</h2>
 
     </div>
 
@@ -18,30 +33,88 @@ Categorias
 
    
      <div class="container search-form">
-        <form action="">
+        <form action="departure" method="POST">
+         {{ csrf_field() }}
+          
           <div class="form-row">
-            <input type="radio" name="type" value="from airport">From airport
+            <input type="radio" name="type" value="from airport" checked="checked">From airport
             <input type="radio" name="type" value="to airport">To airport
             <input type="radio" name="type" value="city-to-city">City-to-city
           </div>
-             <div class="form-row">
-              <div class="form-group col-md-12">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
+          
+          <br>
+          
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-plane-arrival"></i>
+
+</span>
               </div>
-             
+              
+              <div class="floatlabel">
+                <label class="label" for="from">Wich airport are you arriving at?</label>
+                <select name="from" id="from"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                  <option value=""></option>
+                  <optgroup label="<i class='fa fa-plane'></i> Airports">
+                    <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                    <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                    <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                    <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                  </optgroup>
+                  <optgroup label="<i class='fa fa-ship'></i> Ports">
+                    <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                    <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                     <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                    <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                  </optgroup>
+
+                </select>
+ 
+              </div>
+
+
             </div>
-           <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
+          </div>  
+
+           
+          
+          <div class="form-row">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2"><i class="fas fa-location-arrow"></i></span>
               </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
+              
+              <div class="floatlabel">
+                <label class="label" for="destination">Where you want to go?</label>
+                <input type="text" name="destination" id="destination" class="form-control" aria-label="Where you want to go?" aria-describedby="basic-addon2" />
+                
               </div>
+
             </div>
-          <button class="btn-get-started btn-search">SEARCH</button>  
+          </div> 
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6 floatlabel">
+              <label class="label" for="flight_date_arrive">When does your flight arrive?</label>
+              <input type="text" name="flight_date_arrive" id="flight_date_arrive" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-6 floatlabel">
+              <label class="label" for="flight_time_arrive">What time does your flight arrive?</label>
+              <input type="text" name="flight_time_arrive" id="flight_time_arrive" class="form-control" />
+            </div>
+          </div>
+          <div class="form-row">  
+
+            <div class="form-group">
+              <input type="checkbox" name="only_one_way"> <label for="only_one_way">Only one way</label>
+            </div>
+            
+          </div>
+           
+          <button class="btn-get-started btn-search" type="submit">SEARCH</button>  
         </form>
       </div>
 
@@ -501,6 +574,53 @@ Categorias
 @endsection
 
 @section('script')
+<script>
+    function formatState (state) {
+    if (!state.id) {
+      return state.text;
+    }
 
+
+    var baseUrl = "images/ports";
+    var $state = $(
+      '<span><img class="img img-circle" style="width:50px; height: 50px;" src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.jpg" /> ' + state.text + '</span>'
+      );
+    return $state;
+  };
+
+
+  $('.select2').select2({
+    placeholder: "Which airport are you arring at?",
+    allowClear: true,
+    padding: '10px',
+
+    templateResult: formatState,
+
+    templateSelection: function (option) {
+      if (option.id.length > 0 ) {
+        return option.text + "<i class='fa fa-dot-circle-o'></i>";
+      } else {
+        return option.text;
+      }
+    },
+    escapeMarkup: function (m) {
+      return m;
+    }
+  });
+
+$('.search-form .owl-carousel').owlCarousel({
+  nav: false,
+  items: 1,
+  dotsData: true,
+  dots: true
+});
+
+
+
+$( '.owl-dot' ).on( 'click', function() {
+  owl.trigger('.owl-carousel', [$(this).index(), 300]);
+  $( '.owl-dot' ).removeClass( 'active' );
+  $(this).addClass( 'active' );
+})</script>
 @endsection
 
