@@ -21,5 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/transfer/reservation/step-1','SimulationController@renderStep1');
+
 Route::get('/produtos/categorias/lista', 'ProductCategoryController@index')->name('products.categories.list');
 

@@ -2,14 +2,23 @@
 
 @section('style')
 <style>
-  .owl-carousel {
-    background: lightblue;
-    position: absolute;
-  }
 
-  .select2 .select2-container .select2-container--default {
-    width: 100%;
-  }
+
+.container.search-form {
+    background: #4ee7b0;
+    top: 75%;
+    position: absolute;
+    /*padding: 20px;*/
+    margin: 0 auto;
+    width: 80%;
+    left: 10%;
+    padding: 60px;
+
+}
+
+.sticky-wrapper {
+  height: auto !important;
+}
 </style>
 @endsection;
 
@@ -28,94 +37,140 @@ session_start();
   ============================-->
   <section id="intro">
 
+    {{-- QUOTE --}}
     <div class="intro-content">
-      <h2>Say Hi to the <span>best transfers</span><br>in Portugal!</h2>
-
+      <h2>Say <span>HI</span> to the best transfers<br>in <span>PORTUGAL</span>!</h2>
     </div>
-
     
-
-   
-     <div class="container search-form">
+    <div class="container search-form">
+      <div class="row">
         <form action="transfer/booking" method="POST">
-         {{ csrf_field() }}
+          {{ csrf_field() }}
           
-          <div class="form-row">
-            <input type="radio" name="type" value="from airport" checked="checked">From airport
-            <input type="radio" name="type" value="to airport">To airport
-            <input type="radio" name="type" value="city-to-city">City-to-city
+          <div class="row">
+            <input type="radio" name="type" value="1" checked="checked" class="icheck">From airport
+            <input type="radio" name="type" value="2" class="icheck">To airport
+            <input type="radio" name="type" value="3" class="icheck">City-to-city
           </div>
           
-          <br>
-          
-          <div class="form-row">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-plane-arrival"></i>
+          <!--
+          <div class="row">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+              <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+              <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            </ul>
 
-</span>
+            <div class="tab-content">
+              <div id="home" class="tab-pane fade in active">
+                <h3>HOME</h3>
+                <p>Some content.</p>
               </div>
-              
-              <div class="floatlabel">
-                <label class="label" for="from">Wich airport are you arriving at?</label>
-                <select name="from" id="from"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
-                  <option value=""></option>
-                  <optgroup label="<i class='fa fa-plane'></i> Airports">
-                    <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
-                    <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
-                    <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
-                    <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
-                  </optgroup>
-                  <optgroup label="<i class='fa fa-ship'></i> Ports">
-                    <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
-                    <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
-                     <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
-                    <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
-                  </optgroup>
-
-                </select>
-
-                <input type="hidden" id="origin" name="origin" required>
-
- 
+              <div id="menu1" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
               </div>
-                <p class="text text-danger">Please specify where you will arriving at</p>
-
-
-            </div>
-          </div>  
-
-           
-          
-          <div class="form-row">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2"><i class="fas fa-location-arrow"></i></span>
+              <div id="menu2" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
               </div>
-              
-              <div class="floatlabel">
-                <input type="text" name="destination" id="to_place" class="form-control" aria-label="Where you want to go?" aria-describedby="basic-addon2" placeholder="Where you want to go?" />
-              </div>
-                <p class="text text-danger">Please specify where you want to go.</p>
-
             </div>
-          </div> 
-
-
-          <div class="form-row">
-            <div class="form-group col-md-6 floatlabel">
-              <label class="label" for="flight_date_arrive">When does your flight arrive?</label>
-              <input type="text" name="flight_date_arrive" id="flight_date_arrive" class="form-control" />
-              
-            </div>
-
-            <div class="form-group col-md-6 floatlabel">
-              <label class="label" for="flight_time_arrive">What time does your flight arrive?</label>
-              <input type="text" name="flight_time_arrive" id="flight_time_arrive" class="form-control" />
-            </div>
-            <p class="text text-danger">Please specify a date of your flight arrival.</p>
           </div>
-          <div class="form-row">  
+          -->
+
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="form-group floatlabel">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  <select name="from" id="from"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                    <option value=""></option>
+
+                    <optgroup label="<i class='fa fa-plane'></i> Airports">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Ports">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Stations">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="row">  
 
             <div class="form-group">
               <input type="checkbox" name="only_one_way"> <label for="only_one_way">Only one way</label>
@@ -126,8 +181,10 @@ session_start();
           <button class="btn-get-started btn-search" type="submit">SEARCH</button>  
         </form>
       </div>
+    </div>  
 
-  </section><!-- #intro -->
+  </section>
+  <!-- #intro -->
 
 
 
@@ -158,7 +215,8 @@ session_start();
         </div>
 
       </div>
-    </section><!-- #about -->
+    </section
+    ><!-- #about -->
 
     <!--==========================
       Services Section
@@ -552,8 +610,8 @@ session_start();
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
 
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="form-row">
+          <form action="transfer/booking" method="post" role="form" class="contactForm">
+            <div class="row">
               <div class="form-group col-md-6">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validation"></div>

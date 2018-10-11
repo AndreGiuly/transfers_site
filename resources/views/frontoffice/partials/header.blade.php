@@ -25,7 +25,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1>
+        <h1><a href="{{ URL::to('/') }}" class="scrollto">Reve<span>al</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#body"><img src="homepage/img/logo.png" alt="" title="" /></a>-->
       </div>

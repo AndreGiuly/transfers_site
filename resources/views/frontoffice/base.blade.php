@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <link href="{{ asset('homepage/lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -24,13 +25,10 @@
   <link href="{{ asset('homepage/lib/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
   <link href="{{ asset('homepage/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-  
-  <!-- Bootstrap core CSS -->
-  <link href="{{ asset('homepage/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('plugins/iCheck/blue.css') }}" />
 
     <!-- Material Design Bootstrap -->
     <link href="{{ asset('plugins/mdb-bootstrap/css/mdb.min.css') }}" rel="stylesheet">
-
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('homepage/css/style.css') }}" rel="stylesheet">
@@ -167,15 +165,18 @@
   <script src="{{ asset('homepage/lib/owlcarousel/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('homepage/lib/magnific-popup/magnific-popup.min.js') }}"></script>
   <script src="{{ asset('homepage/lib/sticky/sticky.js') }}"></script>
-   <script src="{{ asset('plugins/air-datepicker/dist/js/datepicker.min.js') }}"></script>
-<!-- Include English language -->
-<script src="{{ asset('plugins/air-datepicker/dist/js/i18n/datepicker.en.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_UHJYjvGoKAfP94IaPnI9rxMkU06LFo&libraries=places"></script>
+  <script src="{{ asset('plugins/air-datepicker/dist/js/datepicker.min.js') }}"></script>
+  <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
  
-<script src="{{ asset('plugins/mdb-bootstrap/js/mdb.min.js') }}"></script>
+  <!-- Include English language -->
+  <script src="{{ asset('plugins/air-datepicker/dist/js/i18n/datepicker.en.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+  <!-- Google Maps API -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_UHJYjvGoKAfP94IaPnI9rxMkU06LFo&libraries=places"></script>
+   
+  <script src="{{ asset('plugins/mdb-bootstrap/js/mdb.min.js') }}"></script>
 
   <!-- Contact Form JavaScript File -->
   <script src="{{ asset('homepage/contactform/contactform.js') }}"></script>
@@ -207,6 +208,12 @@
   });
 
   $('.select2').select2();
+
+    $('.icheck').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
 
   </script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\SimulationsRepo;
+use Redirect;
 //use App\Repositories\Interfaces\DefaultMethodsInterface;
 
 class SimulationController extends Controller
@@ -22,6 +23,10 @@ class SimulationController extends Controller
     	];
     	SimulationsRepo::store($data);
 
-    	return view('frontoffice.form');
+    	return Redirect::to('transfer/reservation/step-1');
+    }
+
+    public function renderStep1(){
+        return View('frontoffice.form');
     }
 }
