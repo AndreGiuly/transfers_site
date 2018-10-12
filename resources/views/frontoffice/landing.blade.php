@@ -19,6 +19,22 @@
 .sticky-wrapper {
   height: auto !important;
 }
+
+.transfer-types {
+  margin-bottom: 20px;
+}
+
+.transfer-types input {
+  margin-left: 20px;
+}
+
+#map {
+  height: 150px;
+  width: 300px;
+  border: 5px solid red;
+  margin-top: 300px;
+  margin-left: 600px;
+}
 </style>
 @endsection;
 
@@ -47,48 +63,26 @@ session_start();
         <form action="transfer/booking" method="POST">
           {{ csrf_field() }}
           
-          <div class="row">
-            <input type="radio" name="type" value="1" checked="checked" class="icheck">From airport
-            <input type="radio" name="type" value="2" class="icheck">To airport
-            <input type="radio" name="type" value="3" class="icheck">City-to-city
+          <div class="row transfer-types">
+            <input type="radio" name="type" value="1" checked="checked" class="icheck"> From airport
+            <input type="radio" name="type" value="2" class="icheck"> To airport
+            <input type="radio" name="type" value="3" class="icheck"> City-to-city
           </div>
           
-          <!--
-          <div class="row">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-              <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-              <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-            </ul>
+          <div class="row from_airport_fields">
 
-            <div class="tab-content">
-              <div id="home" class="tab-pane fade in active">
-                <h3>HOME</h3>
-                <p>Some content.</p>
-              </div>
-              <div id="menu1" class="tab-pane fade">
-                <h3>Menu 1</h3>
-                <p>Some content in menu 1.</p>
-              </div>
-              <div id="menu2" class="tab-pane fade">
-                <h3>Menu 2</h3>
-                <p>Some content in menu 2.</p>
-              </div>
-            </div>
-          </div>
-          -->
-
-          <div class="row">
             <div class="col-xs-6">
-              <div class="form-group floatlabel">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+
+              <div class="form-group">
+
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
-                  <select name="from" id="from"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                  
+                  <select name="from" id="from_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
                     <option value=""></option>
 
                     <optgroup label="<i class='fa fa-plane'></i> Airports">
-                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
                       <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
                       <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
                       <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
@@ -108,19 +102,73 @@ session_start();
                       <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
                     </optgroup>
                   </select>
+
                 </div>
               </div>
             </div>
 
             <div class="col-xs-6">
               <div class="form-group">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <label class="sr-only" for="to_place">Where you want to go?</label>
                 <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  <input type="text" class="form-control" id="to_place" placeholder="Where you want to go?">
+                  <input type="hidden" id="destination">
                 </div>
               </div>
             </div>
+          </div>
+          <div class="row to_airport_fields">    
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label class="sr-only" for="from_place">Where you want to go?</label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  <input type="text" class="form-control" id="from_place" placeholder="Where you want to go?">
+                  <input type="hidden" id="destination">
+                </div>
+              </div>
+            </div>
+         
+
+            <div class="col-xs-6">
+
+              <div class="form-group">
+
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  
+                  <select name="from" id="to_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                    <option value=""></option>
+
+                    <optgroup label="<i class='fa fa-plane'></i> Airports">
+                      <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Ports">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Stations">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+
+
           </div>
 
           <div class="row">
@@ -129,9 +177,34 @@ session_start();
               <div class="form-group">
                 <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                 <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                  
+                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                  <input type="text" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?">
+                   <div class="input-group-addon">
+                    <select name="" id="">
+                      @for ($hour = 23; $hour >= 0; $hour--)
+                        @php
+                        if($hour < 10){
+                          $hour = '0'.$hour;
+                        }
+                          
+                        @endphp
+                        <option value="{{ $hour }}">{{ $hour }}</option>
+                        
+                      @endfor
+                    </select>:
+                     <select name="" id="">
+                      @for ($minutes = 00; $minutes <= 55; $minutes = $minutes +5)
+                        @php
+                        if($minutes < 10){
+                          $minutes = '0'.$minutes;
+                        }
+                          
+                        @endphp
+                        <option value="{{ $minutes }}">{{ $minutes }}</option>
+                        
+                      @endfor
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,7 +250,9 @@ session_start();
             </div>
             
           </div>
-           
+           <input type="text" id="result">
+           <input type="text" id="distance">
+           <input type="text" id="duration">
           <button class="btn-get-started btn-search" type="submit">SEARCH</button>  
         </form>
       </div>
@@ -185,7 +260,8 @@ session_start();
 
   </section>
   <!-- #intro -->
-
+  
+  <div id="map"></div>
 
 
   <main id="main">
@@ -677,23 +753,18 @@ session_start();
 
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
-
     var map;
-
     var placeId;
-    
-/*
     var mapOptions = {
       zoom : 10,
       preserveViewport: true
     }
 
     map = new google.maps.Map(document.getElementById('map'),mapOptions);
+
     directionsDisplay.setMap(map);
-*/
 
-
-google.maps.event.addDomListener(window,'load',function(){
+    google.maps.event.addDomListener(window,'load',function(){
 
       var options = {
         componentRestrictions: {country: "pt"}
@@ -701,8 +772,153 @@ google.maps.event.addDomListener(window,'load',function(){
 
       //var from_places = new google.maps.places.Autocomplete(document.getElementById('depart'),options);
       var to_places = new google.maps.places.Autocomplete(document.getElementById('to_place'),options);
-});
 
+      //when to_places changes, will trigger this listener
+      google.maps.event.addListener(to_places,'place_changed', function(){
+
+        var to = to_places.getPlace();
+        var to_address = to.formatted_address;
+
+        $('#destination').val(to_address); 
+
+        origin = $('#from_airport option:selected');
+
+        origin_latitude = origin.attr('latitude');
+        origin_longitude = origin.attr('longitude');
+
+        origin =  origin.attr('local');
+
+        destination = $('#destination').val();
+
+        var service = new google.maps.places.PlacesService(map);
+       
+
+        calculateDistance(origin,destination);
+        calculateRoute(origin,destination);
+
+
+      })
+    });
+
+    // Checks that the PlacesServiceStatus is OK, and adds a marker
+// using the place ID and location from the PlacesService.
+function getPlace(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    var marker = new google.maps.Marker({
+      map: map,
+      place: {
+        placeId: results[0].place_id,
+        location: results[0].geometry.location
+      }
+    });
+  }
+}
+
+    function calculateDistance(origin,destination){
+      var origin = origin;
+      var destination = destination;
+
+
+
+
+      console.log(origin);
+
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations : [destination],
+        travelMode : google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.metric,
+        avoidHighways : false,
+        avoidTolls: false,
+      },callback);
+    }
+
+      //get distance results
+      function callback(response,status){
+
+      //Check if the status is ok
+      if(status != google.maps.DistanceMatrixStatus.OK) {
+        err = 'Error';
+        $('#result').val(err);
+        console.log('Error: '+err);
+      } else {
+        var origin = response.originAddresses[0];
+        var destination = response.destinationAddresses[0];
+        
+        if(response.rows[0].elements[0].status === 'ZERO_RESULTS'){
+          $('#result').html('Better get on a plane. There are no roads between '+origin +' and '+destination+'.');
+        } else {
+          var distance = response.rows[0].elements[0].distance;
+          var duration = response.rows[0].elements[0].duration;
+
+          var distance_in_km = (distance.value / 1000).toFixed(2);
+          var duration_text  = duration.text;
+          var duration_value = duration.value; //in seconds
+
+          $('#distance').val(distance_in_km+' kms');
+          $('#duration').val(duration_text);
+          if(distance_in_km > 100){
+           map.setZoom(6);
+          } 
+
+          if(distance_in_km <= 100 && distance_in_km > 60){
+            map.setZoom(8);
+          }
+
+            if(distance_in_km <= 60) {
+            map.setZoom(10);
+          }
+        }
+      } 
+    }
+
+
+
+
+
+
+    function calculateRoute(origin,destination){
+
+      var request = {
+        origin: origin,
+        destination : destination,
+        travelMode: 'DRIVING'
+      };
+
+
+      directionsService.route(request, function(result,status){
+        if(status == 'OK'){
+          directionsDisplay.setDirections(result);
+           map.setZoom(14);
+
+        }
+      }) 
+
+    }
+
+$(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
+$('.datepicker-field').datepicker({
+   minDate: new Date(),
+   autoClose: true,
+    dateFormat: 'dd/mm/yyyy',
+  onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+              
+        }
+
+});
+$('.datepicker-field').data('datepicker');
 
     </script>
 @endsection

@@ -24,11 +24,12 @@
   <link href="{{ asset('homepage/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('homepage/lib/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
   <link href="{{ asset('homepage/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('plugins/air-datepicker/dist/css/datepicker.min.css') }}">  
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('plugins/iCheck/blue.css') }}" />
+  <link rel="stylesheet" href="{{ asset('plugins/iCheck/all.css') }}" />
 
-    <!-- Material Design Bootstrap -->
-    <link href="{{ asset('plugins/mdb-bootstrap/css/mdb.min.css') }}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{{ asset('plugins/mdb-bootstrap/css/mdb.min.css') }}" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('homepage/css/style.css') }}" rel="stylesheet">
@@ -174,7 +175,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
   <!-- Google Maps API -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_UHJYjvGoKAfP94IaPnI9rxMkU06LFo&libraries=places"></script>
+  <script type="text/javascript"
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_UHJYjvGoKAfP94IaPnI9rxMkU06LFo&libraries=places"></script>
    
   <script src="{{ asset('plugins/mdb-bootstrap/js/mdb.min.js') }}"></script>
 
@@ -213,6 +215,7 @@
       checkboxClass: 'icheckbox_flat-green',
       radioClass: 'iradio_flat-green'
     });
+
 
 
   </script>
