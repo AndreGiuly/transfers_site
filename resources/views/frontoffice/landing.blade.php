@@ -3,15 +3,17 @@
 @section('style')
 <style>
 
-
+.select2 {
+width:100%!important;
+}
 .container.search-form {
     background: #4ee7b0;
     top: 75%;
     position: absolute;
     /*padding: 20px;*/
     margin: 0 auto;
-    width: 80%;
-    left: 10%;
+    width: 60%;
+    left: 20%;
     padding: 60px;
 
 }
@@ -35,6 +37,42 @@
   margin-top: 300px;
   margin-left: 600px;
 }
+
+
+.drop-down-container {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  padding: 10px;
+  margin-top: 0px;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+}
+ .drop-down-container ul {
+    width: 100%;
+    list-style: none;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+.drop-down-container .input-group-addon {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.passengers-li {
+  margin-left: 15px;
+  text-align: center;
+  font-size: 12px;
+  text-align: initial;
+}
+
+#date_arrival {
+  height: 39px;
+}
 </style>
 @endsection;
 
@@ -53,7 +91,7 @@ session_start();
   ============================-->
   <section id="intro">
 
-    {{-- QUOTE --}}
+    {{-- SLOGAN --}}
     <div class="intro-content">
       <h2>Say <span>HI</span> to the best transfers<br>in <span>PORTUGAL</span>!</h2>
     </div>
@@ -64,28 +102,27 @@ session_start();
           {{ csrf_field() }}
           
           <div class="row transfer-types">
-            <input type="radio" name="type" value="1" checked="checked" class="icheck"> From airport
-            <input type="radio" name="type" value="2" class="icheck"> To airport
-            <input type="radio" name="type" value="3" class="icheck"> City-to-city
+            <input type="radio" name="transfer_type" value="1" checked="checked" class="icheck transfer_type"> From airport
+            <input type="radio" name="transfer_type" value="2" class="icheck transfer_type"> To airport
+            <input type="radio" name="transfer_type" value="3" class="icheck transfer_type"> City-to-city
           </div>
           
           <div class="row from_airport_fields">
 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
 
               <div class="form-group">
-
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
                   
-                  <select name="from" id="from_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                  <select name="from_airport_from" id="from_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
                     <option value=""></option>
 
                     <optgroup label="<i class='fa fa-plane'></i> Airports">
                       <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
-                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
-                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
-                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto Francisco Sá Carneiro, Porto">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto de Beja, Alentejo">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0" local="Aeroporto dRe Faro, Algarve">Aeroporto de Faro, Algarve</option>
                     </optgroup>
 
                     <optgroup label="<i class='fa fa-ship'></i> Ports">
@@ -102,48 +139,47 @@ session_start();
                       <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
                     </optgroup>
                   </select>
-
                 </div>
               </div>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
               <div class="form-group">
                 <label class="sr-only" for="to_place">Where you want to go?</label>
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
-                  <input type="text" class="form-control" id="to_place" placeholder="Where you want to go?">
+                  <input type="text" class="form-control" name="from_airport_to" id="to_place" placeholder="Where you want to go?">
                   <input type="hidden" id="destination">
                 </div>
               </div>
             </div>
           </div>
-          <div class="row to_airport_fields">    
 
-            <div class="col-xs-6">
+          <div class="row to_airport_fields" style="display: none">    
+
+            <div class="col-xs-12 col-md-6">
               <div class="form-group">
                 <label class="sr-only" for="from_place">Where you want to go?</label>
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
-                  <input type="text" class="form-control" id="from_place" placeholder="Where you want to go?">
+                  <input type="text" class="form-control" name="to_airport_from" id="from_place" placeholder="Where you want to go?">
                   <input type="hidden" id="destination">
                 </div>
               </div>
             </div>
          
-
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
 
               <div class="form-group">
 
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
                   
-                  <select name="from" id="to_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                  <select name="to_airport_to" id="to_airport"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
                     <option value=""></option>
 
                     <optgroup label="<i class='fa fa-plane'></i> Airports">
-                      <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
                       <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
                       <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
                       <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
@@ -167,20 +203,89 @@ session_start();
                 </div>
               </div>
             </div>
+          </div>
 
+          <div class="row city_to_city"  style="display: none">    
 
+            <div class="col-xs-12 col-md-6">
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  
+                  <select name="city_to_city_from" id="city-to-city_from"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                    <option value=""></option>
+
+                    <optgroup label="<i class='fa fa-plane'></i> Airports">
+                      <option value="Aeroporto de Lisboa, Lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="Aeroporto Sá Carneiro, Porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" local="Aeroporto Sá Carneiro, Porto" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="Aeroporto de Beja, Beja"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" local="Aeroporto de Beja, Beja" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="Aeroporto de Faro, Algarve"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" local="Aeroporto de Faro, Algarve" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Ports">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Stations">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
+         
+           <div class="col-xs-12 col-md-6">
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fas fa-plane-arrival"></i></div>
+                  
+                  <select name="city_to_city_to" id="city-to-city_to"  class="form-control select2" aria-label="Wich airport are you arriving at?" aria-describedby="basic-addon1" >
+                    <option value=""></option>
+
+                    <optgroup label="<i class='fa fa-plane'></i> Airports">
+                      <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Ports">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+
+                    <optgroup label="<i class='fa fa-ship'></i> Stations">
+                      <option value="lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0">Aeroporto de Faro, Algarve</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="row">
 
-            <div class="col-xs-3">
+            <div class="col-xs-12 col-md-6">
               <div class="form-group">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <label for="last_name">Travel Date</label>
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?">
+                  <input type="text" name="travel_day" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?">
                    <div class="input-group-addon">
-                    <select name="" id="">
+                    <select name="travel_hour">
                       @for ($hour = 23; $hour >= 0; $hour--)
                         @php
                         if($hour < 10){
@@ -192,7 +297,7 @@ session_start();
                         
                       @endfor
                     </select>:
-                     <select name="" id="">
+                     <select name="travel_minutes">
                       @for ($minutes = 00; $minutes <= 55; $minutes = $minutes +5)
                         @php
                         if($minutes < 10){
@@ -209,35 +314,68 @@ session_start();
               </div>
             </div>
 
-            <div class="col-xs-3">
+            <div class="col-xs-12 col-md-3">
               <div class="form-group">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                 <label for="last_name">Passengers</label>
+                <div class="input-field">
+                  <input class="form-control passengers" name="passengers" type="text" class="validate" value="2 adults" id="passengers" style="margin-bottom: 0; background: white; cursor: pointer;" autocomplete="off" readonly="readonly">
+
+                  <!-- Dropdown Structure -->
+                  <div class="drop-down-container container hidden">
                   
+                    <div class="row">
+                      <ul class="dropdown-list">
+                        <li class="passengers-li">Adults (+12 years)
+                          <div class="row" style="width: 100px;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
+                              <div class="input-group">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-minus" onclick="getPassengers('minus', 'adults')">-</button></div>
+                                  <input style="width: 35px; padding: 0px; text-align: center; font-size: 16px;" type="number" value="2" id="adults" class="passengers-btn" name="adults">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-plus" onclick="getPassengers('add', 'adults')">+</button></div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </li>
+                        <li class="passengers-li">Children (2-12 years)
+                          <div class="row" style="width: 100px;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
+                              <div class="input-group">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-minus" onclick="getPassengers('minus', 'childrens')">-</button></div>
+                                  <input style="width: 35px; padding: 0px; text-align: center; font-size: 16px;" type="number" value="0" id="childrens" class="passengers-btn" name="children">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-plus" onclick="getPassengers('add', 'childrens')">+</button></div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </li>  
+                        </li class="passengers-li">
+                         <li class="passengers-li">Infants (Under 2 years)
+                          <div class="row" style="width: 100px;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
+                              <div class="input-group">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-minus" onclick="getPassengers('minus', 'infants')">-</button></div>
+                                  <input style="width: 35px; padding: 0px; text-align: center; font-size: 16px;" type="number" value="0" id="infants" class="passengers-btn" name="infants">
+                                <div class="input-group-addon"><button type="button" class="btn passengers-btn" id="adult-plus" onclick="getPassengers('add', 'infants')">+</button></div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </li>
+                       
+                      </ul>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
+              </div> 
             </div>
 
-            <div class="col-xs-3">
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xs-3">
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-                </div>
-              </div>
+            <div class="col-xs-12 col-md-3"> 
+               <button class="btn-get-started btn-search" type="submit">SEARCH</button>   
             </div>
 
           </div>
@@ -246,7 +384,7 @@ session_start();
           <div class="row">  
 
             <div class="form-group">
-              <input type="checkbox" name="only_one_way"> <label for="only_one_way">Only one way</label>
+              <input type="checkbox" class="icheck" name="one_way"> <label for="only_one_way">Only one way</label>
             </div>
             
           </div>
@@ -731,7 +869,7 @@ session_start();
     return $state;
   };
 
-
+  //Render select2 with images
   $('.select2').select2({
     placeholder: "Which airport are you arring at?",
     allowClear: true,
@@ -919,6 +1057,78 @@ $('.datepicker-field').datepicker({
 
 });
 $('.datepicker-field').data('datepicker');
+
+
+$('.passengers').click(function(){
+  $('.drop-down-container').removeClass('hidden');
+})
+
+
+function getPassengers(operation, field){
+  last_value = parseInt($('#'+field).val()); 
+
+  if(operation == 'add'){
+    new_val = last_value+1;
+  } else {
+    if(last_value > 0){
+      new_val = last_value-1;
+    }
+  }
+
+  $('#'+field).val(new_val);
+  return true;
+}
+
+//When click outside of passagers div, hide it.
+$("body").click(function(e){
+    if(e.target.className !== "btn passengers-btn waves-effect waves-light" 
+      && e.target.className !== "form-control passengers"  
+      && e.target.className !== "passengers-btn" 
+      && e.target.className !== "passengers-li" 
+      && e.target.className !== "col-xs-4"){
+      $(".drop-down-container").addClass('hidden');
+      adults = $('#adults').val();
+      childrens = $('#childrens').val();
+      infants = $('#infants').val();
+      text = adults+ ' adults';
+
+      if(childrens > 0){
+        text = text + ' + '+childrens+' children';
+      }
+
+      if(infants > 0){
+        text = text + ' + '+infants+' infant';
+      }
+      $('#passengers').val(text)
+    }
+  });
+
+
+ $('input[name=transfer_type]').on('ifClicked', function (event) { 
+  type = $(this).val();
+    switch(type) {
+    case '1':
+        $('.from_airport_fields').show();
+        $('.to_airport_fields').hide();
+        $('.city_to_city').hide();
+        break;
+    case '2':
+        $('.from_airport_fields').hide();
+         $('.to_airport_fields').show();
+        $('.city_to_city').hide();
+        break;
+    case '3':
+        $('.from_airport_fields').hide();
+        $('.to_airport_fields').hide();
+        $('.city_to_city').show();
+        break;
+    default:
+        $('.from_airport_fields').show();
+        $('.to_airport_fields').hide();
+        $('.city_to_city').hide();
+}
+});
+
 
     </script>
 @endsection

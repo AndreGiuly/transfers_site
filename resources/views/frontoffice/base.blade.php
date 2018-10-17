@@ -212,8 +212,8 @@
   $('.select2').select2();
 
     $('.icheck').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass: 'iradio_flat-green'
+      checkboxClass: 'icheckbox_flat',
+      radioClass: 'iradio_flat'
     });
 
 
