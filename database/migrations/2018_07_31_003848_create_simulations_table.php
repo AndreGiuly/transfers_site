@@ -18,7 +18,6 @@ class CreateSimulationsTable extends Migration
             $table->integer('transfer_type_id');
             $table->string('origin');
             $table->string('destination');
-            $table->datetime('origin_time');
             $table->integer('passengers')->unsigned()->default(2);
             $table->integer('one_way')->unsigned()->default(0);
             $table->string('token');

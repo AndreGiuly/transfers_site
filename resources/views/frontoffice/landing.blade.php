@@ -73,6 +73,14 @@ width:100%!important;
 #date_arrival {
   height: 39px;
 }
+.steps-form-2 {
+  width: 60% !important;
+  margin: 0 auto;
+}
+.steps-form-2 .steps-row-2:before {
+  width: 80%;
+  left: 10%;
+}
 </style>
 @endsection;
 
@@ -119,10 +127,10 @@ session_start();
                     <option value=""></option>
 
                     <optgroup label="<i class='fa fa-plane'></i> Airports">
-                      <option value="ChIJx_bMokYyGQ0Rss59FGBkWOQ" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
-                      <option value="porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto Francisco Sá Carneiro, Porto">Aeroporto Francisco Sá Carneiro, Porto</option>
-                      <option value="alentejo"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto de Beja, Alentejo">Aeroporto de Beja, Alentejo</option>
-                      <option value="faro"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0" local="Aeroporto dRe Faro, Algarve">Aeroporto de Faro, Algarve</option>
+                      <option value="Aeroporto de Lisboa, Lisbon" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="Aeroporto Francisco Sá Carneiro, Porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto Francisco Sá Carneiro, Porto">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="Aeroporto de Beja, Beja"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" data-active="0" local="Aeroporto de Beja, Alentejo">Aeroporto de Beja, Alentejo</option>
+                      <option value="Aeroporto de Faro, Algarve"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" data-active="0" local="Aeroporto de Faro, Algarve">Aeroporto de Faro, Algarve</option>
                     </optgroup>
 
                     <optgroup label="<i class='fa fa-ship'></i> Ports">
@@ -283,7 +291,7 @@ session_start();
                 <label for="last_name">Travel Date</label>
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" name="travel_day" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?">
+                  <input type="text" name="travel_day" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?" autocomplete="off">
                    <div class="input-group-addon">
                     <select name="travel_hour">
                       @for ($hour = 23; $hour >= 0; $hour--)

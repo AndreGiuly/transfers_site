@@ -21,18 +21,18 @@ class SimulationController extends Controller
         switch ($transfer_type) {
 
             case '1': //From airport
-                $data['from'] = $request->from_airport_from;
-                $data['to'] = $request->from_airport_to;
+                $data['origin'] = $request->from_airport_from;
+                $data['destination'] = $request->from_airport_to;
                 break;
 
             case '2': //To airport
-                $data['from'] = $request->to_airport_from;
-                $data['to'] = $request->to_airport_to;
+                $data['origin'] = $request->to_airport_from;
+                $data['destination'] = $request->to_airport_to;
                 break;
                 
              case '3': //City to city
-                $data['from'] = $request->city_to_city_from;
-                $data['to'] = $request->city_to_city_to;
+                $data['origin'] = $request->city_to_city_from;
+                $data['destination'] = $request->city_to_city_to;
                 break;        
             
             default: //If no one of the options is selected
@@ -44,24 +44,30 @@ class SimulationController extends Controller
         $expiration_date = $current->addSeconds($expiration_time);
 
         $data['session_id'] = Session::getId();
-        $data['expiration_date'] = $expiration_date->toDateTimeString();
-        $data['transfer_type'] = $request->transfer_type;
-        $data['date'] = Carbon::createFromFormat('d/m/Y',$request->travel_day)->format('Y-m-d');
-        $data['hour'] = $request->travel_hour.':'.$request->travel_minutes;
+        $data['transfer_type_id'] = $request->transfer_type;
+        $data['pick_up_date'] = Carbon::createFromFormat('d/m/Y',$request->travel_day)->format('Y-m-d');
+        $data['pick_up_hour'] = $request->travel_hour.':'.$request->travel_minutes;
         $data['adults'] = $request->adults;
         $data['children'] = $request->children;
         $data['infants'] = $request->infants;
         $data['one_way'] = $request->one_way == 'on' ? 1 : 0;
+        $data['expire_at'] = $expiration_date->toDateTimeString();
+        
+        session($data);
 
-        dd($data);
+        return redirect()->route('step1');
 
+        //$simulation = SimulationsRepo::store($data);
       
-    	//SimulationsRepo::store($data);
-
-    	return Redirect::to('transfer/reservation/step-1');
+    	//return View('frontoffice.form')->with(['simulation' => $simulation]);
     }
 
     public function renderStep1(){
-        return View('frontoffice.form');
+
+        return View('frontoffice.form.pick-a-car');
+    }
+
+    public function saveCar(Request $request){
+        dd($request);
     }
 }

@@ -13,7 +13,6 @@
 
 Route::get('/', 'FrontOfficeController@index');
 
-Route::post('transfer/booking','SimulationController@saveStep');
 
 
 // Authenticated routes:
@@ -21,7 +20,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/transfer/reservation/step-1','SimulationController@renderStep1');
+
+Route::post('transfer/booking','SimulationController@saveStep');
+Route::get('/transfer/booking/step1','SimulationController@renderStep1')->name('step1');
+
+
+
+
 
 Route::get('/produtos/categorias/lista', 'ProductCategoryController@index')->name('products.categories.list');
 

@@ -23,10 +23,9 @@ class SimulationsRepo implements DefaultMethodsInterface {
     }
 
     public static function store(Array $data){
-    	//dd($request);
-    	
-    	//Simulation::create($data);
-    	return true;
+    
+        $simulation = Simulation::create($data);
+    	return $simulation;
     }
 
     public static function update(Array $data){

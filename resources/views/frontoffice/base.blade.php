@@ -192,31 +192,29 @@
        $("label[for=" + elementId + "]").addClass('floatlabel-shift');
     });
 
-  $(".floatlabel input").blur(function() {
-     if($(this).val().length == 0) {
+    $(".floatlabel input").blur(function() {
+       if($(this).val().length == 0) {
+        var elementId = $(this).attr('id');
+         $("label[for=" + elementId + "]").removeClass('floatlabel-shift');
+       }
+    });
+
+    $(".floatlabel input").focus(function() {
       var elementId = $(this).attr('id');
-       $("label[for=" + elementId + "]").removeClass('floatlabel-shift');
-     }
-  });
+       $("label[for=" + elementId + "]").addClass('floatlabel-active');
+    });
 
-  $(".floatlabel input").focus(function() {
-    var elementId = $(this).attr('id');
-     $("label[for=" + elementId + "]").addClass('floatlabel-active');
-  });
+    $(".floatlabel input").blur(function(){
+      var elementId = $(this).attr('id');
+       $("label[for=" + elementId + "]").removeClass('floatlabel-active');
+    });
 
-  $(".floatlabel input").blur(function(){
-    var elementId = $(this).attr('id');
-     $("label[for=" + elementId + "]").removeClass('floatlabel-active');
-  });
-
-  $('.select2').select2();
+    $('.select2').select2();
 
     $('.icheck').iCheck({
       checkboxClass: 'icheckbox_flat',
       radioClass: 'iradio_flat'
     });
-
-
 
   </script>
 
