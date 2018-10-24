@@ -231,10 +231,7 @@ body {
             <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Personal Data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
        		<p>Luggage</p>
         </div>
-        <div class="steps-step-2">
-            <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Terms and Conditions"><i class="fa fa-photo" aria-hidden="true"></i></a>
-        	<p>Luggage</p>
-        </div>
+       
         <div class="steps-step-2">
             <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
         	<p>Personal Details</p>
@@ -250,7 +247,8 @@ body {
     </div>
 </div>
 <div class="steps-form row">
-  <div class="col-xs-2">
+
+  <div class="col-md-2">
       <div class="left-col">
         <h2 id="booking-card-title">TRANSFER BOOKING DETAILS</h2>
         <input type="text" name="session_id" value="{{session()->get('session_id') }}">
@@ -373,7 +371,7 @@ body {
       </div>
   </div>
 
-  <div class="col-xs-8">
+  <div class="col-xs-12 col-md-8">
     <div id="cars-list">
             <ul>
               <li>
@@ -436,7 +434,7 @@ body {
                       <div class="col-xs-3"><i class="fa fa-star"></i> Private Service</div>
                       <div class="col-xs-3"><i class="fa fa-star"></i> Meet & Greet</div>
                       <div class="col-xs-3">More info</div>
-                      <div class="col-xs-3 select-div"><button type="submit" class="select-car" car-id="1">Select Car</button></div>
+                      <div class="col-xs-3 select-div"><button class="select-car" car-id="1">Select Car</button></div>
                     </div>
                   </div>
                 </div>
@@ -458,13 +456,13 @@ $(function () {
 })
 
 // Steppers
-$(document).ready(function () {
+$(document).ready(function() {
 
-$('.select-car').click(funtion(){
+$('.select-car').click(function(){
   car_id = $(this).attr('car-id');
   alert(car_id);
 });
-
+});
 /*
   var navListItems = $('div.setup-panel-2 div a'),
           allWells = $('.setup-content-2'),
@@ -517,6 +515,6 @@ $('.select-car').click(funtion(){
   $('div.setup-panel-2 div a.btn-amber').trigger('click');
 });
 */
-alert('asdas');
+
 	</script>
 @endsection

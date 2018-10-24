@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('transfer/booking','SimulationController@saveStep');
 Route::get('/transfer/booking/step1','SimulationController@renderStep1')->name('step1');
+Route::post('transfer/booking/select-car','SimulationController@saveCar');
+Route::get('/transfer/booking/luggage','SimulationController@getLuggage')->name('getLuggage');
 
 
 

@@ -374,6 +374,8 @@ body {
   </div>
 
   <div class="col-xs-8">
+    <form action="{{ URL::to('/transfer/booking/select-car') }}" method="POST">
+      {{ csrf_field() }}
     <div id="cars-list">
             <ul>
               <li>
@@ -436,7 +438,8 @@ body {
                       <div class="col-xs-3"><i class="fa fa-star"></i> Private Service</div>
                       <div class="col-xs-3"><i class="fa fa-star"></i> Meet & Greet</div>
                       <div class="col-xs-3">More info</div>
-                      <div class="col-xs-3 select-div"><button type="submit" class="select-car">Select Car</button></div>
+                      <input type="hidden" name="car" value="1">
+                      <div class="col-xs-3 select-div"><button type="submit" class="select-car" car_id="1">Select Car</button></div>
                     </div>
                   </div>
                 </div>
@@ -444,6 +447,7 @@ body {
             
             </ul>
     </div>
+    </form>
     
   </div>
 <!-- Steps form -->

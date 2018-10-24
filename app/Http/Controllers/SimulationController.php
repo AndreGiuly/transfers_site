@@ -68,6 +68,11 @@ class SimulationController extends Controller
     }
 
     public function saveCar(Request $request){
-        dd($request);
+        $request->session()->put('car_id', $request->car);
+        return redirect()->route('getLuggage');
+    }
+
+    public function getLuggage(){
+        return View('frontoffice.form.luggage');
     }
 }
