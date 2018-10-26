@@ -1,0 +1,59 @@
+[33mcommit e67340e03234f82fe58b0fb2aa2c3d85e867a30f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Tue Oct 23 19:06:52 2018 +0100
+
+    booking form construction
+
+[33mcommit 9e5b432c4013e98032fbc890fb20d8f8d7e49516[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Wed Oct 17 19:04:44 2018 +0100
+
+    homepage form construction
+
+[33mcommit c685d4c3376f5f0095e6344aa3d8c340a6df2fd2[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Fri Oct 12 18:51:18 2018 +0100
+
+    form development
+
+[33mcommit b76d572c0c83120257c7cc1d17289ea9a1aceefa[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Thu Oct 11 19:10:55 2018 +0100
+
+    solve form
+
+[33mcommit 945ec14f2170cb27002795a0275d35452b49ec55[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Tue Jul 31 19:05:12 2018 +0100
+
+    inicio das outras páginas do formulario
+
+[33mcommit 20f04efad345af3d400122d00fd7cebba851f540[m
+Author: Giuly <Giuly@Giuly.home>
+Date:   Tue Jul 31 02:01:59 2018 +0100
+
+    mobile view ajeitamentos
+
+[33mcommit 78f2aead96e6146ad0993630662de881cc4b1a52[m
+Author: Giuly <Giuly@Giuly.home>
+Date:   Tue Jul 31 01:44:41 2018 +0100
+
+    primeiro passo do formulário
+
+[33mcommit 0932889bfd76a0576c8ab15c3beb89ffb8d06b03[m
+Author: Giuly <Giuly@Giuly.home>
+Date:   Mon Jul 30 21:02:27 2018 +0100
+
+    dividir as views em partials
+
+[33mcommit 927c28fbc7c2f9ebc5f110e603a84db27f009a15[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Mon Jul 30 19:13:47 2018 +0100
+
+    build homepage form
+
+[33mcommit 22d5f3e74b96ce03a797d6005980ed6e1b0556e9[m
+Author: André Pinheiro <andre.pinheiro@addon.pt>
+Date:   Fri Jul 27 18:22:10 2018 +0100
+
+    first commit

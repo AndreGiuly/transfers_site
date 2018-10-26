@@ -134,10 +134,6 @@ body {
     margin-bottom: 0;
   }
 
-
-
-
-
 }
 
 .left-col {
