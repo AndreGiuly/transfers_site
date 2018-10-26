@@ -213,305 +213,323 @@ body {
   margin: 0 auto;
 }
 }
+
+
+  #extras h3 {
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+  }
+
+.extras-list li {
+  padding: 20px;
+  border-bottom: 1px solid grey
+}
+
+.extras-list .icon {
+  float: left;
+  max-width: 50px;
+  max-height: 60px;
+}
+
+.extra-description{
+  text-align: left;
+}
+
+.row {
+  margin-bottom: 0px;
+}
+
+.extra-quantity label {
+  font-size: 10px;
+  font-weight: 0;
+  color: black;
+}
 </style>
 @endsection
 
 @section('content')
 <div class="container-fluid">
-<h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Registration form with steps</strong></h2>
+<h2 class="text-center font-bold"><strong>Registration form with steps</strong></h2>
 
 <!-- Stepper -->
-<div class="steps-form-2">
-    <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
-        <div class="steps-step-2">
-            <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Basic Information"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a>
-        	<p>Choose a Vehicle</p>
-        </div>
-        <div class="steps-step-2">
-            <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Personal Data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-       		<p>Luggage</p>
-        </div>
-        <div class="steps-step-2">
-            <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Terms and Conditions"><i class="fa fa-photo" aria-hidden="true"></i></a>
-        	<p>Luggage</p>
-        </div>
-        <div class="steps-step-2">
-            <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
-        	<p>Personal Details</p>
-        </div>
-        <div class="steps-step-2">
-            <a href="#step-5" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
-        	<p>Review & Submit</p>
-        </div>
-        <div class="steps-step-2">
-            <a href="#step-6" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
-        	<p>Payment Details</p>
-        </div>
-    </div>
-</div>
-<div class="steps-form row">
-  <div class="col-xs-2">
-      <div class="left-col">
-        <h2 id="booking-card-title">TRANSFER BOOKING DETAILS</h2>
-        <input type="text" name="session_id" value="{{session()->get('session_id') }}">
-        <div class="booking-card-subtitle">FIRST TRANSFER:</div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>ORIGIN</strong><br>
-              <span class="local"><span id="origin-1">{{ session()->get('origin') }}</span></span>
-            </div>
+<section class="form-stepper">
+  <div class="steps-form-2">
+      <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+          <div class="steps-step-2">
+              <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Basic Information"><i class="fa fa-folder-open-o" aria-hidden="true"></i></a>
+            <p>Choose a Vehicle</p>
           </div>
-        </div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>DESTINATION</strong><br>
-              <span class="local"> <span id="destination-1"></span>{{ session()->get('destination') }}</span>
-            </div>
-
+          <div class="steps-step-2">
+              <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Personal Data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <p>Luggage</p>
           </div>
-        </div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>TRAVEL DATE</strong><br>
-              <span class="local"><span id="traveldate-1">{{ session()->get('pick_up_date') }}</span></span>
-               <span class="local2"><span id="travelhour-1">{{ session()->get('pick_up_hour') }}</span></span>
-            </div>
-
-
-
+          <div class="steps-step-2">
+              <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
+            <p>Personal Details</p>
           </div>
-        </div>
-
-        <hr>
-        <div class="booking-card-subtitle">SECOND TRANSFER:</div>
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>ORIGIN</strong><br>
-              <span class="local"><span id="origin-2"></span></span>
-            </div>
-
+          <div class="steps-step-2">
+              <a href="#step-5" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
+            <p>Review & Submit</p>
           </div>
-        </div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>DESTINATION</strong><br>
-              <span class="local"><span id="destination-2"></span></span>
-            </div>
-
+          <div class="steps-step-2">
+              <a href="#step-6" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Finish"><i class="fa fa-check" aria-hidden="true"></i></a>
+            <p>Payment Details</p>
           </div>
-        </div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>TRAVEL DATE</strong><br>
-              <span class="local"><span id="traveldate-2"></span></span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="clearfix line-separator"></div>
-      <div class="left-col">
-
-        <h2 id="booking-card-title">TRANSFER BOOKING DETAILS</h2>
-
-        <div class="booking-card-subtitle">FIRST TRANSFER:</div>
-
-        <div class="card-infos">
-          <div class="row">
-
-            <div class="col-xs-2">
-              <i class="card-icon fas fa-luggage-cart"></i>
-            </div>
-
-            <div class="col-xs-10">
-              <strong>DEPARTURE</strong><br>
-              <span class="local">  adsdadas</span>
-            </div>
-          </div>
-        </div>
       </div>
   </div>
+</section>
 
-  <div class="col-xs-8">
-    <form action="{{ URL::to('/transfer/booking/select-car') }}" method="POST">
-      {{ csrf_field() }}
-    <div id="cars-list">
-            <ul>
-              <li>
-                <div class="car-card car">
+<div class="row">
+  <section class="left-board">
+    <div class="col-xs-2">
+        <div class="left-col">
+          <h2 id="booking-card-title">TRANSFER BOOKING DETAILS</h2>
+          <input type="text" name="session_id" value="{{session()->get('session_id') }}">
+          <div class="booking-card-subtitle">FIRST TRANSFER:</div>
 
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="car-photo">
-                        <img src="https://www.laudoracing-models.com/4099-thickbox_default/fiat-uno-turbo-2-serie-mk2-1990-118-lm104a.jpg" alt="car1">
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>ORIGIN</strong><br>
+                <span class="local"><span id="origin-1">{{ session()->get('origin') }}</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>DESTINATION</strong><br>
+                <span class="local"> <span id="destination-1"></span>{{ session()->get('destination') }}</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>TRAVEL DATE</strong><br>
+                <span class="local"><span id="traveldate-1">{{ session()->get('pick_up_date') }}</span></span>
+                 <span class="local2"><span id="travelhour-1">{{ session()->get('pick_up_hour') }}</span></span>
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <hr>
+          <div class="booking-card-subtitle">SECOND TRANSFER:</div>
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>ORIGIN</strong><br>
+                <span class="local"><span id="origin-2"></span></span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>DESTINATION</strong><br>
+                <span class="local"><span id="destination-2"></span></span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>TRAVEL DATE</strong><br>
+                <span class="local"><span id="traveldate-2"></span></span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="clearfix line-separator"></div>
+        <div class="left-col">
+
+          <h2 id="booking-card-title">TRANSFER BOOKING DETAILS</h2>
+
+          <div class="booking-card-subtitle">FIRST TRANSFER:</div>
+
+          <div class="card-infos">
+            <div class="row">
+
+              <div class="col-xs-2">
+                <i class="card-icon fas fa-luggage-cart"></i>
+              </div>
+
+              <div class="col-xs-10">
+                <strong>DEPARTURE</strong><br>
+                <span class="local">  adsdadas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col-xs-8">
+      <form action="{{ URL::to('/transfer/booking/luggage') }}" method="POST">
+        {{ csrf_field() }}
+        <h2 class="fs-title">Extras</h2>
+            <h3 class="fs-subtitle">We will never sell it</h3>
+
+            <div class="container-fluid">
+              
+                <ul class="extras-list">
+                  <li>
+                    <div class="row">
+                      <div class="col-xs-1">
+                        <img src="https://www.stylemygolf.com/media/catalog/product/cache/1/image/373x373/9df78eab33525d08d6e5fb8d27136e95/c/a/cart-bag-main.png" class="icon" alt="Golf Bag">
                       </div>
-                    </div>
+                      <div class="col-xs-9 extra-description">
+                        <p class="extra-name">Golf Bag </p>
+                        <p class="extra-notes">1 x medium size golf bag with golf clubs safely secured inside.</p>
+                      </div>
 
-                    <div class="col-xs-5">
-                      <h1 class="car-title">Private Taxi</h1>
-                      <div class="car-infos">
-                        <div class="car-specs">
+                      <div class="col-xs-2 extra-quantity">
 
-                          <div class="row">
-                            <div class="col-xs-6">
-                              <i class="fa fa-users"></i> 5 passegers
-                            </div>
-                       
-                            <div class="col-xs-6">
-                              <i class="fas fa-suitcase"></i> 2 medium suitcases
-                            </div>
-                       
-                            <div class="col-xs-6">
-                              <i class="fas fa-map-pin"></i> Door to door
-                            </div>
-                           
-                            <div class="col-xs-6">
-                             <i class="far fa-clock"></i> 1 hour
-                            </div>
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <label for="sort"> Outward </label>
+                            
                           </div>
+                      
+                          <div class="col-xs-8">
+                              <select class="form-control" name="sort" id="sort">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                              </select>
+                           </div>
                         </div>
+
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <label for="sort"> Return </label>
+                            
+                          </div>
+                      
+                          <div class="col-xs-8">
+                              <select class="form-control" name="sort" id="sort">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                              </select>
+                           </div>
+                        </div>
+                 
                       </div>
                     </div>
+                  </li> 
+                    <li>
+                    <div class="row">
+                      <div class="col-xs-1">
+                        <img src="https://www.stylemygolf.com/media/catalog/product/cache/1/image/373x373/9df78eab33525d08d6e5fb8d27136e95/c/a/cart-bag-main.png" class="icon" alt="Golf Bag">
+                      </div>
+                      <div class="col-xs-9 extra-description">
+                        <p class="extra-name">Golf Bag </p>
+                        <p class="extra-notes">1 x medium size golf bag with golf clubs safely secured inside.</p>
+                      </div>
 
-                    <div class="col-xs-3">
-                      <div class="car-prices">
-                        <strike>60 €</strike>
-                        <h1 class="car-price">52 €<br>
-                        <small>Return Price</small></h1>
-                        <div class="free-cancelation"> <i class="fas fa-check-circle"></i> FREE Cancelation</div>
-                        <div class="zero-fees">Zero Fees</div>
+                      <div class="col-xs-2 extra-quantity">
+
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <label for="sort"> Outward </label>
+                            
+                          </div>
+                      
+                          <div class="col-xs-8">
+                              <select class="form-control" name="sort" id="sort">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <label for="sort"> Return </label>
+                            
+                          </div>
+                      
+                          <div class="col-xs-8">
+                              <select class="form-control" name="sort" id="sort">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                              </select>
+                           </div>
+                        </div>
+                 
                       </div>
                     </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="container">
-                      <div class="car-extra premium"><i class="fas fa-medal"></i> Premium Vehicle</div>
-                      <div class="car-extra porter"><i class="fas fa-leaf"></i> Porter-Service</div>
-                    </div>
-                  </div>
-                  <hr class="no-margin-bottom">
+                  </li>    
+                </ul>
+            </div>
+           <button class="btn-get-started btn-search pull-right" type="submit">NEXT</button>  
+        }
+                 
+      </form>
 
-                  <div class="car-footer row">
-                    <div class="container-fluid">
-                      <div class="col-xs-3"><i class="fa fa-star"></i> Private Service</div>
-                      <div class="col-xs-3"><i class="fa fa-star"></i> Meet & Greet</div>
-                      <div class="col-xs-3">More info</div>
-                      <input type="hidden" name="car" value="1">
-                      <div class="col-xs-3 select-div"><button type="submit" class="select-car" car_id="1">Select Car</button></div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            
-            </ul>
+       <button class="btn-get-started btn-search  pull-left">BACK</button>  
+      
     </div>
-    </form>
-    
-  </div>
-<!-- Steps form -->
+  </section>
+
 </div>
 @endsection
 
 @section('script')
-	<script>
-// Tooltips Initialization
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  <script>
 
-// Steppers
-$(document).ready(function () {
-  var navListItems = $('div.setup-panel-2 div a'),
-          allWells = $('.setup-content-2'),
-          allNextBtn = $('.nextBtn-2'),
-          allPrevBtn = $('.prevBtn-2');
-
-  allWells.hide();
-
-  navListItems.click(function (e) {
-      e.preventDefault();
-      var $target = $($(this).attr('href')),
-              $item = $(this);
-
-      if (!$item.hasClass('disabled')) {
-          navListItems.removeClass('btn-amber').addClass('btn-blue-grey');
-          $item.addClass('btn-amber');
-          allWells.hide();
-          $target.show();
-          $target.find('input:eq(0)').focus();
-      }
-  });
-
-  allPrevBtn.click(function(){
-      var curStep = $(this).closest(".setup-content-2"),
-          curStepBtn = curStep.attr("id"),
-          prevStepSteps = $('div.setup-panel-2 div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
-
-          prevStepSteps.removeAttr('disabled').trigger('click');
-  });
-
-  allNextBtn.click(function(){
-      var curStep = $(this).closest(".setup-content-2"),
-          curStepBtn = curStep.attr("id"),
-          nextStepSteps = $('div.setup-panel-2 div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-          curInputs = curStep.find("input[type='text'],input[type='url']"),
-          isValid = true;
-
-      $(".form-group").removeClass("has-error");
-      for(var i=0; i< curInputs.length; i++){
-          if (!curInputs[i].validity.valid){
-              isValid = false;
-              $(curInputs[i]).closest(".form-group").addClass("has-error");
-          }
-      }
-
-      if (isValid)
-          nextStepSteps.removeAttr('disabled').trigger('click');
-  });
-
-  $('div.setup-panel-2 div a.btn-amber').trigger('click');
-});
-	</script>
+  </script>
 @endsection

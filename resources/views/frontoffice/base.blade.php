@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <link href="{{ asset('homepage/lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -28,7 +28,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('plugins/iCheck/all.css') }}" />
 
-  <!-- Material Design Bootstrap -->
+  <!-- Material Design Bootstrap  -->
   <link href="{{ asset('plugins/mdb-bootstrap/css/mdb.min.css') }}" rel="stylesheet">
 
   <!-- Main Stylesheet File -->

@@ -43,16 +43,22 @@ class SimulationController extends Controller
         $current = Carbon::now();
         $expiration_date = $current->addSeconds($expiration_time);
 
-        $data['session_id'] = Session::getId();
-        $data['transfer_type_id'] = $request->transfer_type;
-        $data['pick_up_date'] = Carbon::createFromFormat('d/m/Y',$request->travel_day)->format('Y-m-d');
-        $data['pick_up_hour'] = $request->travel_hour.':'.$request->travel_minutes;
-        $data['adults'] = $request->adults;
-        $data['children'] = $request->children;
-        $data['infants'] = $request->infants;
-        $data['one_way'] = $request->one_way == 'on' ? 1 : 0;
-        $data['expire_at'] = $expiration_date->toDateTimeString();
-        
+        $data = [
+            'session_id' => Session::getId(),
+            'transfer_type_id' => $request->transfer_type,
+            'arrival_date' => Carbon::createFromFormat('d/m/Y',$request->arrival_date)->format('Y-m-d'),
+            'arrival_hour' => $request->arrival_hour.':'.$request->arrival_minutes,
+            'departure_date' => Carbon::createFromFormat('d/m/Y',$request->departure_date)->format('Y-m-d'),
+            'departure_hour' => $request->departure_hour.':'.$request->departure_minutes,
+            'adults' => $request->adults,
+            'children' => $request->children,
+            'infants' => $request->infants,
+            'one_way' => ($request->one_way == 'on' ? 1 : 0),
+            'expire_at' => $expiration_date->toDateTimeString(),
+            'distance' => $request->distance,
+            'estimated_time' => $request->duration
+        ];
+       
         session($data);
 
         return redirect()->route('step1');
@@ -63,7 +69,6 @@ class SimulationController extends Controller
     }
 
     public function renderStep1(){
-
         return View('frontoffice.form.pick-a-car');
     }
 
@@ -74,5 +79,14 @@ class SimulationController extends Controller
 
     public function getLuggage(){
         return View('frontoffice.form.luggage');
+    }
+
+    public function setLuggage(Request $request){
+        #$request->session()->put('car_id', $request->car);
+        return redirect()->route('personal-details');
+    }
+
+    public function getPersonalInfo(){
+        return View('frontoffice.form.personal-info');
     }
 }

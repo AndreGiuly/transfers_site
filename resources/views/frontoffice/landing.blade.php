@@ -225,10 +225,10 @@ session_start();
                     <option value=""></option>
 
                     <optgroup label="<i class='fa fa-plane'></i> Airports">
-                      <option value="Aeroporto de Lisboa, Lisboa" title="ChIJx_bMokYyGQ0Rss59FGBkWOQ" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
-                      <option value="Aeroporto Sá Carneiro, Porto"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" local="Aeroporto Sá Carneiro, Porto" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
-                      <option value="Aeroporto de Beja, Beja"  title="ChIJrStKYWRvJA0R0TlgbYpXGhU" local="Aeroporto de Beja, Beja" data-active="0">Aeroporto de Beja, Alentejo</option>
-                      <option value="Aeroporto de Faro, Algarve"   title="ChIJm5mnTbBSBQ0RRztnYx5VRCE" local="Aeroporto de Faro, Algarve" data-active="0">Aeroporto de Faro, Algarve</option>
+                      <option value="Aeroporto de Lisboa, Lisboa" title="Aeroporto de Lisboa, Lisbon" local="Aeroporto de Lisboa, Lisbon" latitude="38.771163582" longitude="-9.133832798" data-active="0">Aeroporto da Portela, Lisboa</option>
+                      <option value="Aeroporto Sá Carneiro, Porto"  title="Aeroporto Sá Carneiro, Porto" local="Aeroporto Sá Carneiro, Porto" data-active="0">Aeroporto Francisco Sá Carneiro, Porto</option>
+                      <option value="Aeroporto de Beja, Beja"  title="Aeroporto de Beja, Alentejo" local="Aeroporto de Beja, Beja" data-active="0">Aeroporto de Beja, Alentejo</option>
+                      <option value="Aeroporto de Faro, Algarve"   title="Aeroporto de Faro, Algarve" local="Aeroporto de Faro, Algarve" data-active="0">Aeroporto de Faro, Algarve</option>
                     </optgroup>
 
                     <optgroup label="<i class='fa fa-ship'></i> Ports">
@@ -288,12 +288,12 @@ session_start();
 
             <div class="col-xs-12 col-md-6">
               <div class="form-group">
-                <label for="last_name">Travel Date</label>
+                <label for="last_name">Arrival Date</label>
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                  <input type="text" name="travel_day" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?" autocomplete="off">
+                  <input type="text" name="arrival_date" class="form-control datepicker-field" data-language='en' id="date_arrival" placeholder="What is the date of your arrival?" autocomplete="off">
                    <div class="input-group-addon">
-                    <select name="travel_hour">
+                    <select name="arrival_hour">
                       @for ($hour = 23; $hour >= 0; $hour--)
                         @php
                         if($hour < 10){
@@ -305,7 +305,7 @@ session_start();
                         
                       @endfor
                     </select>:
-                     <select name="travel_minutes">
+                     <select name="arrival_minutes">
                       @for ($minutes = 00; $minutes <= 55; $minutes = $minutes +5)
                         @php
                         if($minutes < 10){
@@ -322,7 +322,43 @@ session_start();
               </div>
             </div>
 
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for="last_name">Departure Date</label>
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                  <input type="text" name="departure_date" class="form-control datepicker-field" data-language='en' id="date_departure" placeholder="What is the date of your arrival?" autocomplete="off">
+                   <div class="input-group-addon">
+                    <select name="departure_hour">
+                      @for ($hour = 23; $hour >= 0; $hour--)
+                        @php
+                        if($hour < 10){
+                          $hour = '0'.$hour;
+                        }
+                          
+                        @endphp
+                        <option value="{{ $hour }}">{{ $hour }}</option>
+                        
+                      @endfor
+                    </select>:
+                     <select name="departure_minutes">
+                      @for ($minutes = 00; $minutes <= 55; $minutes = $minutes +5)
+                        @php
+                        if($minutes < 10){
+                          $minutes = '0'.$minutes;
+                        }
+                          
+                        @endphp
+                        <option value="{{ $minutes }}">{{ $minutes }}</option>
+                        
+                      @endfor
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
               <div class="form-group">
                  <label for="last_name">Passengers</label>
                 <div class="input-field">
@@ -382,9 +418,13 @@ session_start();
               </div> 
             </div>
 
-            <div class="col-xs-12 col-md-3"> 
-               <button class="btn-get-started btn-search" type="submit">SEARCH</button>   
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="checkbox" class="icheck" name="one_way"> <label for="only_one_way">Only one way</label>
+              </div>
             </div>
+
+        
 
           </div>
 
@@ -396,9 +436,9 @@ session_start();
             </div>
             
           </div>
-           <input type="text" id="result">
-           <input type="text" id="distance">
-           <input type="text" id="duration">
+           <input type="hidden" name="result" id="result">
+           <input type="hidden" name="distance" id="distance">
+           <input type="hidden" name="duration" id="duration">
           <button class="btn-get-started btn-search" type="submit">SEARCH</button>  
         </form>
       </div>
